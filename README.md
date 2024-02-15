@@ -298,4 +298,4 @@ Il existe deux façons d’indiquer une couleur:
 | `KP_Home`     | Début sur le clavier numérique                                  |
 | `KP_Insert`   | Insert sur le clavier numérique                                 |
 
-pandoc version 3.1.11.1
+généré avec pandoc version 3.1.11.1
