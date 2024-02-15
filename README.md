@@ -1,12 +1,12 @@
-# tkiteasy
-Surcouche de tkinter, facile pour débuter du graphisme en python, sans gestion des événements.
+# `tkiteasy`
+Surcouche de `tkinter`, facile pour débuter du graphisme en python, sans gestion des événements.
 
 `tkiteasy` est une librairie qui va vous permettre de gérer
 des graphismes sans avoir besoin de vous plonger dans les méandres
 techniques de `tkinter`. Elle est en fait une interface simple entre
 vous et la librairie graphique `tkinter`, qui nécessite un certain apprentissage.
 
-# Utilisation de `tkiteasy`
+## Utilisation de `tkiteasy`
 
 La librairie `tkiteasy` est écrite en `python3`. Elle s’appuie sur la
 librairie graphique `tkinter`. Elle nécessite également la librairie
@@ -14,7 +14,7 @@ librairie graphique `tkinter`. Elle nécessite également la librairie
 devez donc installer les paquets `python3-tk`, `python3-pil` et
 `python3-pil.imagetk` .
 
-# Ouverture de session graphique et objet Canevas
+## Ouverture de session graphique et objet Canevas
 
 La première méthode (c’est à dire fonction) à utiliser pour pouvoir
 lancer `tkiteasy` est `ouvrirFenetre(x,y)`, où `x` indique la largeur en
@@ -32,7 +32,7 @@ objet que vous devez conserver et utiliser tout au long de votre
 programme. Il vous permettra de lancer les méthodes graphiques qui sont
 présentées ci-dessous.
 
-# Méthodes du `Canevas`
+## Méthodes du `Canevas`
 
 À partir du moment où vous disposez d’un `Canevas`, vous allez pouvoir
 créez et manipuler toutes sortes de figures géométriques, textes, images
@@ -42,9 +42,9 @@ Le fichier `main.py` fourni avec `tkiteasy` vous montre comment
 manipuler ces objets graphiques et lancer les différentes méthodes de la
 librairie.
 
-## Création de figures géométriques, images, textes
+### Création de figures géométriques, images, textes
 
-### `dessinerRectangle(x, y, l, h, col)`
+#### `dessinerRectangle(x, y, l, h, col)`
 
 Crée un rectangle plein, dont le coin supérieur gauche se trouve en
 `(x,y)`, dont la largeur est `l`, la hauteur `h` et la couleur `col`
@@ -55,37 +55,37 @@ objet dans une variable, ce qui vous permettra ensuite de le modifier,
 le déplacer, le supprimer, ou bien ignorer cet objet si vous pensez ne
 plus en avoir besoin ultérieurement.**
 
-### `dessinerLigne(x, y, x2, y2, col [,ep])`
+#### `dessinerLigne(x, y, x2, y2, col [,ep])`
 
 Cette méthode dessine une ligne entre le point `(x,y)` et le point
 `(x2, y2)`, de couleur `col`. Le dernier paramètre `ep` est optionnel:
 il permet de préciser l’épaisseur de la ligne tracée, et vaut 1 par
 défaut.
 
-### `dessinerCercle(x, y, r, col)`
+#### `dessinerCercle(x, y, r, col)`
 
 Dessine un cercle de centre `(x,y)` et de rayon `r`, de couleur `col`.
 
-### `dessinerDisque(x, y, r, col)`
+#### `dessinerDisque(x, y, r, col)`
 
 Dessine un disque de centre `(x,y)` et de rayon `r`, de couleur `col`.
 
-### `dessinerFleche(x, y, x2, y2, col [,ep])`
+#### `dessinerFleche(x, y, x2, y2, col [,ep])`
 
 Dssine une flèche du point `(x,y)` vers le point `(x2, y2)`, de couleur
 `col`. Le dernier paramètre `ep` est optionnel: il permet de préciser
 l’épaisseur de la ligne tracée, et vaut 1 par défaut.
 
-### `changerPixel(x, y, col)`
+#### `changerPixel(x, y, col)`
 
 Dessine un pixel de coordonnées `(x,y)` et de couleur `col`.
 
-### `afficherTexte(txt, x, y, col, sizefont)`
+#### `afficherTexte(txt, x, y, col, sizefont)`
 
 Écrit un texte `txt` **centré** en position `(x,y)`, de couleur `col`
 (blanc par défaut) et de taille `sizefont` (18 par défaut).
 
-### `afficherImage(x, y, filename [, sx, sy])`
+#### `afficherImage(x, y, filename [, sx, sy])`
 
 Affiche une image en position `(x,y)`, provenant du fichier `filename`.
 Le fichier doit être précisé **avec son chemin relatif au script
@@ -94,14 +94,14 @@ python**. Cette méthode accepte les principaux formats bruts
 Les paramètres `sx` et `sy` sont optionnels et permettent de
 redimensionner l’image à la dimension *s**x* × *s**y*.
 
-## Méthodes de modification d’objets existants
+### Méthodes de modification d’objets existants
 
 Les méthodes qui suivent permettent de modifier un objet existant:
 changer ses caractéristiques (couleur, texte), le déplacer ou le
 supprimer. Pour ce faire, vous devez avoir conservé une référence à
 l’objet créé, au moment de sa création. Voir exemple ci-dessous.
 
-### `deplacer(obj, dx, dy)`
+#### `deplacer(obj, dx, dy)`
 
 Permet de déplacer un objet `obj` de `dx` pixels horizontalement et `dy`
 pixels verticalement.  
@@ -112,33 +112,33 @@ cercle cree \# plus tard dans le programme... g.deplacer(c, 10, 0) \#
 ...on deplace le cercle de 10 pixels \# vers la droite en utilisant
 cette reference
 
-### `supprimer(obj)`
+#### `supprimer(obj)`
 
 Supprime l’objet `obj`.
 
-### `changerCouleur(obj, col)`
+#### `changerCouleur(obj, col)`
 
 Change la couleur de l’objet `obj` en `col`.
 
-### `changerTexte(obj, txt)`
+#### `changerTexte(obj, txt)`
 
 Change le texte de l’objet `obj` (nécessairement un objet texte) en
 `txt`.
 
-### `placerAuDessus(obj)`
+#### `placerAuDessus(obj)`
 
 Place l’objet `obj` au premier plan.
 
-### `placerAuDessous(obj)`
+#### `placerAuDessous(obj)`
 
 Place l’objet `obj` au dernier plan.
 
-## Gestion des événements
+### Gestion des événements
 
 On appelle *événement* une interaction entre l’utilisateur et le
 programme: clic souris, appui touche clavier, déplacement souris.
 
-### `attendreTouche()`
+#### `attendreTouche()`
 
 Attend qu’une touche soit pressée au clavier. La variable renvoyée est
 une *string* qui contient la description de la touche:
@@ -148,7 +148,7 @@ touches spéciales (curseurs, touche de fonction...) :
 clavier</u>. La variable contient `None` si aucune touche n’a été
 pressée depuis la dernière récupération de touche.
 
-### `recupererTouche()`
+#### `recupererTouche()`
 
 Même fonctionnement que la méthode précédente (renvoie la touche
 cliquée), mais la fonction est non bloquante: elle renvoie la dernière
@@ -156,7 +156,7 @@ touche pressée sans bloquer le déroulement du programme. Elle renvoie
 `None` si aucune touche n’a été pressée depuis la dernière récupération
 de touche.
 
-### `attendreClic()`
+#### `attendreClic()`
 
 Attend qu’un bouton souris soit pressé. La variable renvoyée est un
 `Event` qui contient des champs `x` et `y`. Ainsi, vous pouvez obtenir
@@ -167,7 +167,7 @@ les coordonnées du point cliqué de la façon suivante:
 Un champ `num` permet également de tester quel bouton a été cliqué:
 `num=1` pour le bouton gauche, `num=3` pour le bouton droit.
 
-### `recupererClic()`
+#### `recupererClic()`
 
 Même fonctionnement que la méthode précédente (renvoie la position
 cliquée), mais la fonction est non bloquante: elle renvoie la dernière
@@ -175,21 +175,21 @@ position cliquée sans bloquer le déroulement du programme. Si aucun clic
 n’a eu lieu depuis la dernière récupération de position, la méthode
 renvoie `None`.
 
-### `recupererPosition()`
+#### `recupererPosition()`
 
 Permet de récupérer la dernière position de souris suite à un
 déplacement de souris. La variable renvoyée est un `Event` qui contient
 des champs `x` et `y`: les coordonnées `(x,y)` de la souris, ou `(0,0)`
 si aucun déplacement n’a eu lieu depuis le lancement du programme.
 
-### `recupererObjet(x,y)`
+#### `recupererObjet(x,y)`
 
 Permet de récupérer l’objet se trouvant au premier plan en position
 `(x,y)`. Renvoie `None` si aucun n’objet ne se trouve à cet emplacement.
 
-## Autres fonctions
+### Autres fonctions
 
-### `actualiser()`
+#### `actualiser()`
 
 Cette méthode, placée après une méthode graphique, force le
 rafraîchissment. À utiliser avec modération au risque de ralentir votre
@@ -206,7 +206,7 @@ nombreux objets simultanément, cela peut devenir nécessaire.
 **Si vous ne voyez pas à l’écran les résultats des fonctions graphiques
 que vous avez appelées, essayez un `actualiser()`!**
 
-### `pause(sec)`
+#### `pause(sec)`
 
 Parfois, le programme crée se déroule trop rapidement et nécessite
 d’être ralenti. Cette méthode permet de forcer une pause, d’une durée de
@@ -214,11 +214,11 @@ d’être ralenti. Cette méthode permet de forcer une pause, d’une durée de
 en dixièmes, centièmes, millièmes de secondes. Par défaut, cette méthode
 crée une pause d’une demi milliseconde.
 
-### `fermerFenetre()`
+#### `fermerFenetre()`
 
 Ferme la fenêtre graphique.
 
-# `ObjetGraphique`
+## `ObjetGraphique`
 
 Toutes les méthodes qui créent des objets graphiques (rectangle, disque,
 image...etc) renvoient un `ObjetGraphique`. Cet `ObjetGraphique`
@@ -229,7 +229,7 @@ informations concernant cet objet:
 
 -   `col`, qui contient sa couleur
 
-# Les couleurs
+## Les couleurs
 
 Il existe deux façons d’indiquer une couleur:
 
@@ -246,7 +246,7 @@ Il existe deux façons d’indiquer une couleur:
     le sont également, en fonction de la configuration locale de votre
     ordinateur. Faites des tentatives: `"pink", "gold",`...
 
-# Les touches clavier
+## Les touches clavier
 
 |               |                                                                 |
 |:--------------|:----------------------------------------------------------------|
