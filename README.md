@@ -1,5 +1,5 @@
 # `tkiteasy`
-Surcouche de `tkinter`, facile pour débuter du graphisme en python, sans gestion des événements.
+Surcouche de `tkinter` facile à utiliser pour réaliser des programmes graphiques en python, sans gestion des événements.
 
 `tkiteasy` est une librairie qui va vous permettre de gérer
 des graphismes sans avoir besoin de vous plonger dans les méandres
