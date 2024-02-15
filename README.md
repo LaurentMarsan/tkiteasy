@@ -14,7 +14,7 @@ librairie graphique `tkinter`. Elle nécessite également la librairie
 devez donc installer les paquets `python3-tk`, `python3-pil` et
 `python3-pil.imagetk` .
 
-## Ouverture de session graphique et objet Canevas
+## Ouverture de session graphique et objet `Canevas`
 
 La première méthode (c’est à dire fonction) à utiliser pour pouvoir
 lancer `tkiteasy` est `ouvrirFenetre(x,y)`, où `x` indique la largeur en
