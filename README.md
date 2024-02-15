@@ -1,18 +1,16 @@
 # tkiteasy
-Surcouche de tkinter, facile pour débuter du graphisme en python, sans gestion des événements
+Surcouche de tkinter, facile pour débuter du graphisme en python, sans gestion des événements.
 
-*(version 4.72 du 25/02/2023)*
-
-`tkiteasy` est une librairie "*maison*" qui va vous permettre de gérer
+`tkiteasy` est une librairie qui va vous permettre de gérer
 des graphismes sans avoir besoin de vous plonger dans les méandres
 techniques de `tkinter`. Elle est en fait une interface simple entre
-vous et ce module `tkinter` qui nécessite un certain apprentissage.
+vous et la librairie graphique `tkinter`, qui nécessite un certain apprentissage.
 
-# Installation de la librairie `tkiteasy`
+# Utilisation de `tkiteasy`
 
 La librairie `tkiteasy` est écrite en `python3`. Elle s’appuie sur la
 librairie graphique `tkinter`. Elle nécessite également la librairie
-`PIL`, qui permet de gérer des images. Pour utiliser `tkiteasy`, vous
+`PIL` (pillow), qui permet de gérer des images. Pour utiliser `tkiteasy`, vous
 devez donc installer les paquets `python3-tk`, `python3-pil` et
 `python3-pil.imagetk` .
 
@@ -23,7 +21,7 @@ lancer `tkiteasy` est `ouvrirFenetre(x,y)`, où `x` indique la largeur en
 pixels de la fenêtre graphique, et où `y` indique sa hauteur. Exemple de
 lancement d’une session graphique:
 
-g = ouvrirFenetre(800,600)
+`g = ouvrirFenetre(800,600)`
 
 On a ici créé une fenêtre de 800 pixels de large sur 600 pixels de
 haut.  
@@ -46,7 +44,7 @@ librairie.
 
 ## Création de figures géométriques, images, textes
 
-### 
+### `dessinerRectangle(x, y, l, h, col)`
 
 Crée un rectangle plein, dont le coin supérieur gauche se trouve en
 `(x,y)`, dont la largeur est `l`, la hauteur `h` et la couleur `col`
@@ -57,37 +55,37 @@ objet dans une variable, ce qui vous permettra ensuite de le modifier,
 le déplacer, le supprimer, ou bien ignorer cet objet si vous pensez ne
 plus en avoir besoin ultérieurement.**
 
-### 
+### `dessinerLigne(x, y, x2, y2, col [,ep])`
 
 Cette méthode dessine une ligne entre le point `(x,y)` et le point
 `(x2, y2)`, de couleur `col`. Le dernier paramètre `ep` est optionnel:
 il permet de préciser l’épaisseur de la ligne tracée, et vaut 1 par
 défaut.
 
-### 
+### `dessinerCercle(x, y, r, col)`
 
 Dessine un cercle de centre `(x,y)` et de rayon `r`, de couleur `col`.
 
-### 
+### `dessinerDisque(x, y, r, col)`
 
 Dessine un disque de centre `(x,y)` et de rayon `r`, de couleur `col`.
 
-### 
+### `dessinerFleche(x, y, x2, y2, col [,ep])`
 
 Dssine une flèche du point `(x,y)` vers le point `(x2, y2)`, de couleur
 `col`. Le dernier paramètre `ep` est optionnel: il permet de préciser
 l’épaisseur de la ligne tracée, et vaut 1 par défaut.
 
-### 
+### `changerPixel(x, y, col)`
 
 Dessine un pixel de coordonnées `(x,y)` et de couleur `col`.
 
-### 
+### `afficherTexte(txt, x, y, col, sizefont)`
 
 Écrit un texte `txt` **centré** en position `(x,y)`, de couleur `col`
 (blanc par défaut) et de taille `sizefont` (18 par défaut).
 
-### 
+### `afficherImage(x, y, filename [, sx, sy])`
 
 Affiche une image en position `(x,y)`, provenant du fichier `filename`.
 Le fichier doit être précisé **avec son chemin relatif au script
@@ -103,7 +101,7 @@ changer ses caractéristiques (couleur, texte), le déplacer ou le
 supprimer. Pour ce faire, vous devez avoir conservé une référence à
 l’objet créé, au moment de sa création. Voir exemple ci-dessous.
 
-### 
+### `deplacer(obj, dx, dy)`
 
 Permet de déplacer un objet `obj` de `dx` pixels horizontalement et `dy`
 pixels verticalement.  
@@ -114,24 +112,24 @@ cercle cree \# plus tard dans le programme... g.deplacer(c, 10, 0) \#
 ...on deplace le cercle de 10 pixels \# vers la droite en utilisant
 cette reference
 
-### 
+### `supprimer(obj)`
 
 Supprime l’objet `obj`.
 
-### 
+### `changerCouleur(obj, col)`
 
 Change la couleur de l’objet `obj` en `col`.
 
-### 
+### `changerTexte(obj, txt)`
 
 Change le texte de l’objet `obj` (nécessairement un objet texte) en
 `txt`.
 
-### 
+### `placerAuDessus(obj)`
 
 Place l’objet `obj` au premier plan.
 
-### 
+### `placerAuDessous(obj)`
 
 Place l’objet `obj` au dernier plan.
 
@@ -140,7 +138,7 @@ Place l’objet `obj` au dernier plan.
 On appelle *événement* une interaction entre l’utilisateur et le
 programme: clic souris, appui touche clavier, déplacement souris.
 
-### 
+### `attendreTouche()`
 
 Attend qu’une touche soit pressée au clavier. La variable renvoyée est
 une *string* qui contient la description de la touche:
@@ -150,7 +148,7 @@ touches spéciales (curseurs, touche de fonction...) :
 clavier</u>. La variable contient `None` si aucune touche n’a été
 pressée depuis la dernière récupération de touche.
 
-### 
+### `recupererTouche()`
 
 Même fonctionnement que la méthode précédente (renvoie la touche
 cliquée), mais la fonction est non bloquante: elle renvoie la dernière
@@ -158,18 +156,18 @@ touche pressée sans bloquer le déroulement du programme. Elle renvoie
 `None` si aucune touche n’a été pressée depuis la dernière récupération
 de touche.
 
-### 
+### `attendreClic()`
 
 Attend qu’un bouton souris soit pressé. La variable renvoyée est un
 `Event` qui contient des champs `x` et `y`. Ainsi, vous pouvez obtenir
 les coordonnées du point cliqué de la façon suivante:
 
-p = g.attendreClic() print(p.x, p.y)
+`p = g.attendreClic() print(p.x, p.y)`
 
 Un champ `num` permet également de tester quel bouton a été cliqué:
 `num=1` pour le bouton gauche, `num=3` pour le bouton droit.
 
-### 
+### `recupererClic()`
 
 Même fonctionnement que la méthode précédente (renvoie la position
 cliquée), mais la fonction est non bloquante: elle renvoie la dernière
@@ -177,21 +175,21 @@ position cliquée sans bloquer le déroulement du programme. Si aucun clic
 n’a eu lieu depuis la dernière récupération de position, la méthode
 renvoie `None`.
 
-### 
+### `recupererPosition()`
 
 Permet de récupérer la dernière position de souris suite à un
 déplacement de souris. La variable renvoyée est un `Event` qui contient
 des champs `x` et `y`: les coordonnées `(x,y)` de la souris, ou `(0,0)`
 si aucun déplacement n’a eu lieu depuis le lancement du programme.
 
-### 
+### `recupererObjet(x,y)`
 
 Permet de récupérer l’objet se trouvant au premier plan en position
 `(x,y)`. Renvoie `None` si aucun n’objet ne se trouve à cet emplacement.
 
 ## Autres fonctions
 
-### 
+### `actualiser()`
 
 Cette méthode, placée après une méthode graphique, force le
 rafraîchissment. À utiliser avec modération au risque de ralentir votre
@@ -208,7 +206,7 @@ nombreux objets simultanément, cela peut devenir nécessaire.
 **Si vous ne voyez pas à l’écran les résultats des fonctions graphiques
 que vous avez appelées, essayez un `actualiser()`!**
 
-### 
+### `pause(sec)`
 
 Parfois, le programme crée se déroule trop rapidement et nécessite
 d’être ralenti. Cette méthode permet de forcer une pause, d’une durée de
@@ -216,7 +214,7 @@ d’être ralenti. Cette méthode permet de forcer une pause, d’une durée de
 en dixièmes, centièmes, millièmes de secondes. Par défaut, cette méthode
 crée une pause d’une demi milliseconde.
 
-### 
+### `fermerFenetre()`
 
 Ferme la fenêtre graphique.
 
