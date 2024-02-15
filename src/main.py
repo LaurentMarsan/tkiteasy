@@ -9,11 +9,16 @@ g.actualiser()
 g.attendreClic()
 
 ###### fonctions géométriques standard
+g.changerTexte(txthaut,"Fonction dessinerFleche(): cliquez pour continuer")
+g.actualiser()
+g.attendreClic()
+g.dessinerFleche(60,50,30,280,50,"pink",5)
+
 # dessinerDisque()
 g.changerTexte(txthaut,"Fonction dessinerDisque(): cliquez pour continuer")
 g.actualiser()
 g.attendreClic()
-d1 = g.dessinerDisque(600,500,30,"grey")
+d1 = g.dessinerDisque(600,500,30,"green")
 
 # dessinerCercle()
 g.changerTexte(txthaut,"Fonction dessinerCercle(): cliquez pour continuer")
@@ -25,13 +30,7 @@ g.dessinerCercle(100,500,30,"purple")
 g.changerTexte(txthaut,"Fonction dessinerLigne(): cliquez pour continuer")
 g.actualiser()
 g.attendreClic()
-g.dessinerLigne(200,20,750,340,"pink")
-
-# dessinerFlèche()
-g.changerTexte(txthaut,"Fonction dessinerFleche(): cliquez pour continuer")
-g.actualiser()
-g.attendreClic()
-g.dessinerFleche(60,50,30,280,50,"pink",5)
+g.dessinerLigne(200,20,750,340,"red")
 
 # dessinerRectangle()
 g.changerTexte(txthaut,"Fonction dessinerRectangle(): cliquez pour continuer")
@@ -56,8 +55,8 @@ txt = g.afficherTexte("coucou",400,300,"red", 45)
 g.changerTexte(txthaut,"Fonction changerTexte() & changerCouleur(): cliquez pour continuer")
 g.actualiser()
 g.attendreClic()
-g.changerTexte(txt,"ouep")
-g.changerCouleur(txt,"blue")
+g.changerTexte(txt,"tkiteasy!")
+g.changerCouleur(txt,"pink")
 
 
 
@@ -67,14 +66,14 @@ g.actualiser()
 g.attendreClic()
 pacman = g.afficherImage(400,300,"./pacman.png")
 
-# deplaceer()
+# deplacer()
 g.changerTexte(txthaut,"Fonction deplacer(): cliquez pour continuer")
 g.actualiser()
 g.attendreClic()
 for i in range(100):
-   g.deplacer(pacman,0,-1)
-   g.actualiser()
-   g.pause()
+    g.deplacer(pacman,0,-1)
+    g.actualiser()
+    g.pause()
 
 # attendreClic et coordonnées
 txtbas = g.afficherTexte(f"coordonnées pacman {pacman.x}, {pacman.y}",400,550,"white")
