@@ -1,1 +1,7 @@
-main_mf.py permet de tester les fonctionnalités multifenêtres
+créer les objets c'est ok mais récupérer le contenu de la box????
+
+
+TODO
+* sortir le handler cb1 de tkiteasy pour le passer en paramètre de la créa bouton
+* récupérer le contenu de la mkbox
+...et?
