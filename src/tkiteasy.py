@@ -10,12 +10,16 @@ from PIL import ImageTk, Image
 ################################################################################
 class ObjetGraphique():
     annuaire = {}
-    def __init__(self, num, x, y, col):
+    def __init__(self, master, num, x, y, col):
         self.num = num
+        self.master = master
         self.x = x
         self.y = y
         self.col = col
-        ObjetGraphique.annuaire[num] = self
+        if self.master:
+            if self.master not in ObjetGraphique.annuaire:
+                ObjetGraphique.annuaire[self.master] = {}
+            ObjetGraphique.annuaire[self.master][num] = self
 
 
 ################################################################################
@@ -45,22 +49,22 @@ class Canevas(tk.Canvas):
 
     def afficherTexte(self, txt, x, y, col="white", sizefont=18):
         font = tkFont.Font(family='Helvetica', size=sizefont, weight='normal')
-        return ObjetGraphique(self.create_text(x,y,fill=col, text=txt, font=font), x, y, col)
+        return ObjetGraphique(self.master,self.create_text(x,y,fill=col, text=txt, font=font), x, y, col)
 
     def dessinerRectangle(self, x, y, l, h, col):
-        return ObjetGraphique(self.create_rectangle(x, y, x+l, y+h, fill=col, width=0), x, y, col)
+        return ObjetGraphique(self.master,self.create_rectangle(x, y, x+l, y+h, fill=col, width=0), x, y, col)
 
     def dessinerLigne(self, x, y, x2, y2, col, ep=1):
-        return ObjetGraphique(self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep), x, y, col)
+        return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep), x, y, col)
 
     def dessinerCercle(self, x, y, r, col):
-        return ObjetGraphique(self.create_oval(x-r, y-r, x+r, y+r, width=1, outline=col), x, y, col)
+        return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, outline=col), x, y, col)
 
     def dessinerDisque(self, x, y, r, col):
-        return ObjetGraphique(self.create_oval(x-r, y-r, x+r, y+r, width=0, fill=col), x, y, col)
+        return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=0, fill=col), x, y, col)
 
     def changerPixel(self, x, y, col):
-        return ObjetGraphique(self.dessinerRectangle(x,y,1,1,col), x, y, col)
+        return ObjetGraphique(self.master,self.dessinerRectangle(x,y,1,1,col), x, y, col)
 
     def afficherImage(self, x, y, filename, sx=None, sy=None):
         image = Image.open(filename)
@@ -68,11 +72,15 @@ class Canevas(tk.Canvas):
             print("Erreur: afficherImage",filename,": fichier incorrect")
             return
         if sx!=None and sy!=None:
-            image = image.resize((sx,sy), Image.ANTIALIAS)
+            if not hasattr(Image,'ANTIALIAS'):
+                image = image.resize((sx,sy), Image.Resampling.LANCZOS)
+            else:
+                image = image.resize((sx,sy), Image.ANTIALIAS)
         img = ImageTk.PhotoImage(image)
         self.img[img] = True
-        self.create_rectangle(x, y, x+img.width()-1, y+img.height()-1, outline='')
-        return ObjetGraphique(self.create_image(x, y, image=img, anchor="nw"), x, y, None)
+# Pourquoi ça ici? Supprimé de la v4.74 pour essai
+#         self.create_rectangle(x, y, x+img.width()-1, y+img.height()-1, outline='')
+        return ObjetGraphique(self.master,self.create_image(x, y, image=img, anchor="nw"), x, y, None)
 
 # dessinerFleche: ne renvoit pas d'objet graphique
 # N = longueur des branches de la flèche
@@ -99,8 +107,13 @@ class Canevas(tk.Canvas):
 
     def supprimer(self, obj):
         self.delete(obj.num)
-        del ObjetGraphique.annuaire[obj.num]
+        del ObjetGraphique.annuaire[obj.master][obj.num]
         obj = None
+
+    def supprimerTout(self):
+        for num in ObjetGraphique.annuaire[self.master]:
+            self.delete(num)
+        ObjetGraphique.annuaire[self.master] = {}
 
     def changerCouleur(self, obj, col):
         obj.col = col
@@ -172,13 +185,13 @@ class Canevas(tk.Canvas):
         self.master.focus_force()
         self.update()
         posx,posy = self.lastpos[0],self.lastpos[1]
-        return ObjetGraphique(None,posx,posy,None)
+        return ObjetGraphique(None,None,posx,posy,None)
     
     def recupererObjet(self, x, y):
         ido = self.find_overlapping(x, y, x, y)
         if not ido:
             return None
-        return ObjetGraphique.annuaire[ido[-1]]
+        return ObjetGraphique.annuaire[self.master][ido[-1]]
 
 ################################################################################
 # AUTRES FONCTIONS
