@@ -39,6 +39,7 @@ class Canevas(tk.Canvas):
 # bindings
         self.bind_all("<Key>", self.evenementClavier)
         self.bind("<Button-1>", self.evenementClicG)
+        self.bind("<Button-2>", self.evenementClicM)
         self.bind("<Button-3>", self.evenementClicD)
         self.bind("<Motion>", self.evenementDeplaceSouris)
         self.pack()
@@ -138,6 +139,11 @@ class Canevas(tk.Canvas):
 #             print("Mouse", event)
             self.lastclic = event
 
+    def evenementClicM(self, event):
+#         if event!=self.lastclic:
+#             print("Mouse", event)
+            self.lastclic = event
+    
     def evenementClicD(self, event):
 #         if event!=self.lastclic:
 #             print("Mouse", event)
