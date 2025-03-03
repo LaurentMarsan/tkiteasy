@@ -27,7 +27,7 @@ class ObjetGraphique():
 ################################################################################
 class Canevas(tk.Canvas):
     def __init__(self, master, largeur,hauteur):
-        tk.Canvas.__init__(self, master, width=largeur, height=hauteur, bg="black", confine=True)
+        tk.Canvas.__init__(self, master, width=largeur, height=hauteur, bg="black", confine=True, highlightthickness=0, borderwidth=0)
 # attributs
         self.master = master #la fenêtre hébergeant le canvas
         self.img = {} #pour stocker les images sinon elles sont garbagecollectées dès leur création lol
