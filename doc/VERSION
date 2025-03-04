@@ -1,3 +1,7 @@
+4.75 3/3/25
+ajout options à __init__ afin que les lignes et colonnes 0 soient accessibles
+ajout evenementClicM: certains OSX ne récupèrent par evenementClicD
+
 4.74 23/5/24
 redimensionnement ANTIALIAS vs Resampling.Lanczos: fixed
 
