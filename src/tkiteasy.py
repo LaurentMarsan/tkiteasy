@@ -26,6 +26,7 @@ class ObjetGraphique():
 # classe Canevas
 ################################################################################
 class Canevas(tk.Canvas):
+    racine = None
     def __init__(self, master, largeur,hauteur):
         tk.Canvas.__init__(self, master, width=largeur, height=hauteur, bg="black", confine=True, highlightthickness=0, borderwidth=0)
 # attributs
@@ -225,7 +226,12 @@ class Canevas(tk.Canvas):
 
 
 def ouvrirFenetre(x=400, y=200):
-    racine = tk.Tk()
+    if Canevas.racine==None:
+        Canevas.racine = tk.Tk()
+        racine = Canevas.racine
+    else:
+        racine = tk.Toplevel()
+    
     #racine.protocol("WM_DELETE_WINDOW", qtk.quad.master.destroy)
     g = Canevas(racine, x, y)
 #     tk.mainloop()
