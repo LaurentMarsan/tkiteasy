@@ -107,11 +107,19 @@ class Canevas(tk.Canvas):
         self.move(obj.num,x,y)
 
     def supprimer(self, obj):
+        if obj.master not in ObjetGraphique.annuaire:
+            self.error("supprimer: aucun annuaire: aucun objet graphique créé?")
+        if obj.num not in ObjetGraphique.annuaire[obj.master]:
+            self.error("supprimer: numéro d'objet incorrect")
+
         self.delete(obj.num)
         del ObjetGraphique.annuaire[obj.master][obj.num]
         obj = None
 
     def supprimerTout(self):
+        if self.master not in ObjetGraphique.annuaire:
+            self.error("supprimerTout: aucun annuaire créé: aucun objet graphique créé?")
+
         for num in ObjetGraphique.annuaire[self.master]:
             self.delete(num)
         ObjetGraphique.annuaire[self.master] = {}
@@ -210,6 +218,9 @@ class Canevas(tk.Canvas):
             
     def pause(self, sleeptime=0.0005):
         sleep(sleeptime)
+
+    def error(self,msg):
+        print(f"Tkiteasy: {msg}")
 
 
 
