@@ -49,8 +49,8 @@ class Canevas(tk.Canvas):
 # CREATION D'OBJETS
 ################################################################################
 
-    def afficherTexte(self, txt, x, y, col="white", sizefont=18):
-        font = tkFont.Font(family='Helvetica', size=sizefont, weight='normal')
+    def afficherTexte(self, txt, x, y, col="white", sizefont=18, family="Helvetica"):
+        font = tkFont.Font(family=family, size=sizefont, weight='normal')
         return ObjetGraphique(self.master,self.create_text(x,y,fill=col, text=txt, font=font), x, y, col)
 
     def dessinerRectangle(self, x, y, l, h, col):
