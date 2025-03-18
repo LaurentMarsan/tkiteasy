@@ -54,7 +54,7 @@ class Canevas(tk.Canvas):
         return ObjetGraphique(self.master,self.create_text(x,y,fill=col, text=txt, font=font), x, y, col)
 
     def dessinerRectangle(self, x, y, l, h, col):
-        return ObjetGraphique(self.master,self.create_rectangle(x, y, x+l, y+h, fill=col, width=0), x, y, col)
+        return ObjetGraphique(self.master,self.create_rectangle(x, y, x+l, y+h, fill=col, width=1, outline=col), x, y, col)
 
     def dessinerLigne(self, x, y, x2, y2, col, ep=1):
         return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep), x, y, col)
@@ -63,7 +63,7 @@ class Canevas(tk.Canvas):
         return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, outline=col), x, y, col)
 
     def dessinerDisque(self, x, y, r, col):
-        return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=0, fill=col), x, y, col)
+        return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, fill=col), x, y, col)
 
     def changerPixel(self, x, y, col):
         return ObjetGraphique(self.master,self.dessinerRectangle(x,y,1,1,col), x, y, col)
