@@ -2,10 +2,12 @@
 from tkiteasy import *
 
 print("Cliquer pour faire défiler les polices, clic droit pour quitter")
-g = ouvrirFenetre(800,1000)
+g = ouvrirFenetre(1000,1000)
 pos = 50
 for p in tkFont.families():
-    g.afficherTexte(p,400,pos,"white",20, p)
+    print(p)
+    g.afficherTexte(p+" --->",200,pos,"white",16)
+    g.afficherTexte(p,600,pos,"white",20, p)
     if pos>=950:
         pos = 0
         clic = g.attendreClic()
