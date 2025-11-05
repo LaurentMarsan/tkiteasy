@@ -35,7 +35,7 @@ présentées ci-dessous.
 ## Méthodes du `Canevas`
 
 À partir du moment où vous disposez d’un `Canevas`, vous allez pouvoir
-créez et manipuler toutes sortes de figures géométriques, textes, images
+créer et manipuler toutes sortes de figures géométriques, textes, images
 dans votre fenêtre graphique. Voici les méthodes permettant de créer ces
 figures.  
 Le fichier `main.py` fourni avec `tkiteasy` vous montre comment
