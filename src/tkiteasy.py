@@ -178,6 +178,7 @@ class Canevas(tk.Canvas):
 
     def attendreTouche(self):
         touche = None
+        self.lastkey = None
         while touche == None:
             self.pause(0.1)
             touche = self.recupererTouche()
@@ -192,6 +193,7 @@ class Canevas(tk.Canvas):
 
     def attendreClic(self):
         clic = None
+        self.lastclic = None
         while clic==None:
             self.pause(0.1)
             clic = self.recupererClic()
