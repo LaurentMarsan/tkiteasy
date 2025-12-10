@@ -80,10 +80,10 @@ l’épaisseur de la ligne tracée, et vaut 1 par défaut.
 
 Dessine un pixel de coordonnées `(x,y)` et de couleur `col`.
 
-#### `afficherTexte(txt, x, y, col, sizefont)`
+#### `afficherTexte(txt, x, y, col, sizefont [, font])`
 
 Écrit un texte `txt` **centré** en position `(x,y)`, de couleur `col`
-(blanc par défaut) et de taille `sizefont` (18 par défaut).
+(blanc par défaut) et de taille `sizefont` (18 par défaut). L'option `font` permet de modifier la police utilisée.
 
 #### `afficherImage(x, y, filename [, sx, sy])`
 
