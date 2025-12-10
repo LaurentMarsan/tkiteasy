@@ -49,7 +49,6 @@ class Canevas(tk.Canvas):
 ################################################################################
 # CREATION D'OBJETS
 ################################################################################
-
     def afficherTexte(self, txt, x, y, col="white", sizefont=18, family="Helvetica"):
         font = tkFont.Font(family=family, size=sizefont, weight='normal')
         return ObjetGraphique(self.master,self.create_text(x,y,fill=col, text=txt, font=font), x, y, col)
@@ -104,16 +103,13 @@ class Canevas(tk.Canvas):
 # MODIFICATEURS
 ################################################################################
     def deplacer(self, obj, x, y):
+        self.testObjet(obj)
         obj.x += x
         obj.y += y
         self.move(obj.num,x,y)
 
     def supprimer(self, obj):
-        if obj.master not in ObjetGraphique.annuaire:
-            self.error("supprimer: aucun annuaire: aucun objet graphique créé?")
-        if obj.num not in ObjetGraphique.annuaire[obj.master]:
-            self.error("supprimer: numéro d'objet incorrect")
-
+        self.testObjet(obj)
         self.delete(obj.num)
         del ObjetGraphique.annuaire[obj.master][obj.num]
         obj = None
@@ -127,17 +123,21 @@ class Canevas(tk.Canvas):
         ObjetGraphique.annuaire[self.master] = {}
 
     def changerCouleur(self, obj, col):
+        self.testObjet(obj)
         obj.col = col
         self.itemconfigure(obj.num, fill=col)
 
     def changerTexte(self, obj, txt):
+        self.testObjet(obj)
         self.itemconfigure(obj.num, text=txt)
         
     def placerAuDessus(self,obj):
+        self.testObjet(obj)
         if type(obj)==ObjetGraphique:
             self.tag_raise(obj.num)
         
     def placerAuDessous(self,obj):
+        self.testObjet(obj)
         if type(obj)==ObjetGraphique:
             self.tag_lower(obj.num)
 
@@ -225,7 +225,13 @@ class Canevas(tk.Canvas):
         sleep(sleeptime)
 
     def error(self,msg):
-        print(f"Tkiteasy: {msg}")
+        raise Exception(f"Tkiteasy: {msg}")
+
+    def testObjet(self,obj):
+        if obj.master not in ObjetGraphique.annuaire:
+            self.error(f"supprimer: aucun annuaire {obj.master}: aucun objet graphique créé?")
+        if obj.num not in ObjetGraphique.annuaire[obj.master]:
+            self.error(f"supprimer: numéro d'objet {obj.num} dans l'annuaire {obj.master} incorrect")
 
 
 
