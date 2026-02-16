@@ -63,7 +63,7 @@ class Canevas(tk.Canvas):
         return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, outline=col), x, y, col)
 
     def dessinerDisque(self, x, y, r, col):
-        return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, fill=col), x, y, col)
+        return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, fill=col, outline=col), x, y, col)
 
     def changerPixel(self, x, y, col):
         return ObjetGraphique(self.master,self.dessinerRectangle(x,y,1,1,col), x, y, col)
@@ -87,7 +87,7 @@ class Canevas(tk.Canvas):
 # dessinerFleche: ne renvoit pas d'objet graphique
 # N = longueur des branches de la flèche
     def dessinerFleche(self,x,y,x2,y2,N,col,ep=1):
-        self.dessinerLigne(x,y,x2,y2,col,ep)
+        a = self.dessinerLigne(x,y,x2,y2,col,ep)
         vx,vy = x2-x,y2-y                   # vecteur initial
         m = max(abs(vx),abs(vy))
         vx /= m
@@ -96,8 +96,9 @@ class Canevas(tk.Canvas):
         pvx,pvy = vy,-vx                    # 90°
         fx1,fy1 = px+pvx*N,py+pvy*N         # 1ère extrémité 
         fx2,fy2 = px-pvx*N,py-pvy*N         # 2nde extrémité
-        self.dessinerLigne(x2,y2,fx1,fy1,col,ep)
-        self.dessinerLigne(x2,y2,fx2,fy2,col,ep)
+        b = self.dessinerLigne(x2,y2,fx1,fy1,col,ep)
+        c = self.dessinerLigne(x2,y2,fx2,fy2,col,ep)
+        return a,b,c
 
 ################################################################################
 # MODIFICATEURS
@@ -109,9 +110,13 @@ class Canevas(tk.Canvas):
         self.move(obj.num,x,y)
 
     def supprimer(self, obj):
-        self.testObjet(obj)
-        self.delete(obj.num)
-        del ObjetGraphique.annuaire[obj.master][obj.num]
+        if type(obj)==tuple:
+            for o in obj:
+                self.delete(o.num)
+                del ObjetGraphique.annuaire[o.master][o.num]
+        else:
+            self.delete(obj.num)
+            del ObjetGraphique.annuaire[obj.master][obj.num]
         obj = None
 
     def supprimerTout(self):
@@ -125,7 +130,7 @@ class Canevas(tk.Canvas):
     def changerCouleur(self, obj, col):
         self.testObjet(obj)
         obj.col = col
-        self.itemconfigure(obj.num, fill=col)
+        self.itemconfigure(obj.num, fill=col, outline=col)
 
     def changerTexte(self, obj, txt):
         self.testObjet(obj)
