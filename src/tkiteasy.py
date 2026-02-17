@@ -130,7 +130,11 @@ class Canevas(tk.Canvas):
     def changerCouleur(self, obj, col):
         self.testObjet(obj)
         obj.col = col
-        self.itemconfigure(obj.num, fill=col)
+        otype = self.type(obj.num)
+        if otype in {"rectangle", "oval", "polygon", "arc"}:
+            self.itemconfigure(obj.num, fill=col, outline=col)
+        else:
+            self.itemconfigure(obj.num, fill=col)
 
     def changerTexte(self, obj, txt):
         self.testObjet(obj)
