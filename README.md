@@ -107,7 +107,7 @@ Il existe deux façons d’indiquer une couleur:
 | Touche        | Description                               |
 | ------------- | ----------------------------------------- |
 | Return        | La touche Entrée                          |
-| Space         | La barre espace                           |
+| space         | La barre espace                           |
 | Tab           | La touche de Tabulation, Tab              |
 | Up            | ↑                                         |
 | Down          | ↓                                         |
