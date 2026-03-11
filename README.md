@@ -133,21 +133,5 @@ Il existe deux façons d’indiquer une couleur:
 | Pause         | Pause                                     |
 | Num Lock      | Verr Num                                  |
 | Print         | Impr Écran                                |
-| KP 0          | 0 sur le clavier numérique                |
-| KP 1          | 1 sur le clavier numérique                |
-| KP Up         | ↑ sur le clavier numérique                |
-| KP Down       | ↓ sur le clavier numérique                |
-| KP Left       | ← sur le clavier numérique                |
-| KP Right      | → sur le clavier numérique                |
-| KP Add        | + sur le clavier numérique                |
-| KP Multiply   | × sur le clavier numérique                |
-| KP Subtract   | - sur le clavier numérique                |
-| KP Divide     | / sur le clavier numérique                |
-| KP Next       | PageDown sur le clavier numérique         |
-| KP Prior      | PageUp sur le clavier numérique           |
-| KP Decimal    | Symbole de la ponctuation décimale (,) sur le clavier numérique |
-| KP Delete     | Suppr sur le clavier numérique            |
-| KP End        | Fin sur le clavier numérique              |
-| KP Enter      | Entrée sur le clavier numérique           |
-| KP Home       | Début sur le clavier numérique            |
-| KP Insert     | Insert sur le clavier numérique           |
+
+Les touches récupérées peuvent varier selon les systèmes et claviers. La solution pour connaître la valeur d'une touche donnée ? Récupérer la touche souhaitée et l'afficher.
