@@ -56,8 +56,11 @@ class Canevas(tk.Canvas):
     def dessinerRectangle(self, x, y, l, h, col):
         return ObjetGraphique(self.master,self.create_rectangle(x, y, x+l-1, y+h-1, fill=col, width=1, outline=col), x, y, col)
 
-    def dessinerLigne(self, x, y, x2, y2, col, ep=1):
-        return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep), x, y, col)
+    def dessinerLigne(self, x, y, x2, y2, col, ep=1, arrow=False):
+        if arrow:
+            return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep, arrow=tk.LAST), x, y, col)
+        else: 
+            return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep), x, y, col)
 
     def dessinerCercle(self, x, y, r, col):
         return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, outline=col), x, y, col)
@@ -87,18 +90,8 @@ class Canevas(tk.Canvas):
 # dessinerFleche: ne renvoit pas d'objet graphique
 # N = longueur des branches de la flèche
     def dessinerFleche(self,x,y,x2,y2,N,col,ep=1):
-        a = self.dessinerLigne(x,y,x2,y2,col,ep)
-        vx,vy = x2-x,y2-y                   # vecteur initial
-        m = max(abs(vx),abs(vy))
-        vx /= m
-        vy /= m                             # normalisation
-        px,py = x2-vx*N,y2-vy*N             # point intermédiaire
-        pvx,pvy = vy,-vx                    # 90°
-        fx1,fy1 = px+pvx*N,py+pvy*N         # 1ère extrémité 
-        fx2,fy2 = px-pvx*N,py-pvy*N         # 2nde extrémité
-        b = self.dessinerLigne(x2,y2,fx1,fy1,col,ep)
-        c = self.dessinerLigne(x2,y2,fx2,fy2,col,ep)
-        return a,b,c
+        o = self.dessinerLigne(x,y,x2,y2,col,ep,arrow=True)
+        return o
 
 ################################################################################
 # MODIFICATEURS
@@ -110,13 +103,8 @@ class Canevas(tk.Canvas):
         self.move(obj.num,x,y)
 
     def supprimer(self, obj):
-        if type(obj)==tuple:
-            for o in obj:
-                self.delete(o.num)
-                del ObjetGraphique.annuaire[o.master][o.num]
-        else:
-            self.delete(obj.num)
-            del ObjetGraphique.annuaire[obj.master][obj.num]
+        self.delete(obj.num)
+        del ObjetGraphique.annuaire[obj.master][obj.num]
         obj = None
 
     def supprimerTout(self):
