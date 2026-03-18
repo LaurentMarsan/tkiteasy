@@ -28,10 +28,10 @@ g.attendreClic()
 g.dessinerLigne(200,20,750,340,"pink")
 
 # dessinerFlèche()
-g.changerTexte(txthaut,"Fonction dessinerFleche(): cliquez pour continuer")
+g.changerTexte(txthaut,"Fonction dessinerFleche() option pointillés: cliquez pour continuer")
 g.actualiser()
 g.attendreClic()
-g.dessinerFleche(60,50,30,280,50,"pink",5)
+g.dessinerFleche(60,50,30,280,50,"pink",ep=5,dash=10)
 
 # dessinerRectangle()
 g.changerTexte(txthaut,"Fonction dessinerRectangle(): cliquez pour continuer")

@@ -56,11 +56,11 @@ class Canevas(tk.Canvas):
     def dessinerRectangle(self, x, y, l, h, col):
         return ObjetGraphique(self.master,self.create_rectangle(x, y, x+l-1, y+h-1, fill=col, width=1, outline=col), x, y, col)
 
-    def dessinerLigne(self, x, y, x2, y2, col, ep=1, arrow=False):
+    def dessinerLigne(self, x, y, x2, y2, col, ep=1, arrow=False, dash=None):
         if arrow:
-            return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep, arrow=tk.LAST), x, y, col)
+            return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep, arrow=tk.LAST, dash=dash), x, y, col)
         else: 
-            return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep), x, y, col)
+            return ObjetGraphique(self.master,self.create_line(x, y, x2, y2, fill=col, cap='round', width=ep, dash=dash), x, y, col)
 
     def dessinerCercle(self, x, y, r, col):
         return ObjetGraphique(self.master,self.create_oval(x-r, y-r, x+r, y+r, width=1, outline=col), x, y, col)
@@ -89,8 +89,8 @@ class Canevas(tk.Canvas):
 
 # dessinerFleche: ne renvoit pas d'objet graphique
 # N = longueur des branches de la flèche
-    def dessinerFleche(self,x,y,x2,y2,N,col,ep=1):
-        o = self.dessinerLigne(x,y,x2,y2,col,ep,arrow=True)
+    def dessinerFleche(self,x,y,x2,y2,N,col,ep=1, dash=None):
+        o = self.dessinerLigne(x,y,x2,y2,col,ep=ep,arrow=True, dash=dash)
         return o
 
 ################################################################################
