@@ -37,6 +37,8 @@ class Canevas(tk.Canvas):
         self.lastkey = None #dernière touche tapée
         self.lastclic = None #dernier clic cliqué
         self.lastpos = 0,0 #dernière pos souris
+        self.x = largeur
+        self.y = hauteur
 
 # bindings
         self.bind_all("<Key>", self.evenementClavier)
