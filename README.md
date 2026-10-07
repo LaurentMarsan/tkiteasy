@@ -1,7 +1,7 @@
 # tkiteasy : une librairie graphique facile à utiliser en python
 
 **Auteur :** Laurent Marsan
-**Date :** 18/3/2026
+**Date :** 07/10/2026
 
 ## Sommaire
 
@@ -41,6 +41,7 @@ On a ici créé une fenêtre de 800 pixels de large sur 600 pixels de haut.
 **IMPORTANT :** le point de coordonnées (0,0) se trouve toujours en haut à gauche de la fenêtre.
 
 L’appel à `ouvrirFenetre` renvoie un objet `Canevas` (ici `g`). C’est un objet que vous devez conserver et utiliser tout au long de votre programme. Il vous permettra de lancer les méthodes graphiques qui sont présentées ci-dessous.
+**Astuce :** `g.x` et `g.y`permettent de récupérer les dimensions de la fenêtre.
 
 ### 3. Méthodes du Canevas
 
@@ -53,9 +54,10 @@ L’appel à `ouvrirFenetre` renvoie un objet `Canevas` (ici `g`). C’est un ob
 
     **IMPORTANT :** cette méthode, ainsi que toutes les méthodes qui créent des figures géométriques, renvoie un objet. Vous pouvez récupérer cet objet dans une variable, ce qui vous permettra ensuite de le modifier, le déplacer, le supprimer, ou bien ignorer cet objet si vous pensez ne plus en avoir besoin ultérieurement.
 
-*   `dessinerLigne(x, y, x2, y2, col)` :
+*   `dessinerLigne(x, y, x2, y2, col [,ep=val, arrow=val, dash=val])` :
     Cette méthode dessine une ligne entre le point `(x,y)` et le point `(x2, y2)`, de couleur `col`. On peut ajouter des options après ces 5 paramètres obligatoires :
     *   `ep=3` : crée une ligne d’épaisseur 3
+    *   `arrow=True` : crée une flèche
     *   `dash=10` : crée une ligne avec des pointillés de longueur 10
 
 *   `dessinerCercle(x, y, r, col)` :
