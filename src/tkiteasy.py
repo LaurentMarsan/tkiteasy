@@ -89,7 +89,7 @@ class Canevas(tk.Canvas):
 
 # dessinerFleche: ne renvoit pas d'objet graphique
 # N = longueur des branches de la flèche
-    def dessinerFleche(self,x,y,x2,y2,N,col,ep=1, dash=None):
+    def dessinerFleche(self,x,y,x2,y2,col,ep=1, dash=None):
         o = self.dessinerLigne(x,y,x2,y2,col,ep=ep,arrow=True, dash=dash)
         return o
 
